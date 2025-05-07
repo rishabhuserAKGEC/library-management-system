@@ -1,0 +1,109 @@
+body {
+    font-family: sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+}
+
+.header-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.header-buttons button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+}
+
+.chart-button {
+    background-color: #007bff;
+}
+
+.back-button {
+    background-color: #007bff;
+}
+
+h1 {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: calc(100% - 12px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.button-group button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.cancel-button {
+    background-color: #ddd;
+    color: #555;
+}
+
+.login-button {
+    background-color: #5cb85c; /* A green color for vendor login */
+    color: white;
+}
+
+.chart-button:hover {
+    background-color: #0056b3;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+}
+
+.cancel-button:hover {
+    background-color: #ccc;
+}
+
+.login-button:hover {
+    background-color: #4cae4c;
+}

@@ -1,0 +1,367 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Florist Vendors - Event Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+            padding-top: 20px;
+        }
+
+        .vendor-header {
+            background-color: #3f51b5;
+            color: white;
+            padding: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 80%;
+            max-width: 960px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .header-buttons button {
+            background: none;
+            border: 1px solid #4caf50; /* Green */
+            color: #4caf50;
+            padding: 10px 15px;
+            margin-left: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .header-buttons button:hover {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .header-buttons button.logout {
+            border-color: #f44336; /* Red */
+            color: #f44336;
+        }
+
+        .header-buttons button.logout:hover {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .vendor-category {
+            background-color: #3f51b5;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+
+        .vendor-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 80%;
+            max-width: 960px;
+            margin-bottom: 20px;
+        }
+
+        .vendor-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .vendor-card h3 {
+            color: #3f51b5;
+            margin-bottom: 10px;
+        }
+
+        .vendor-card p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .vendor-card button {
+            background: none;
+            border: 1px solid #4caf50; /* Green */
+            color: #4caf50;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .vendor-card button:hover {
+            background-color: #4caf50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header class="vendor-header">
+        <div class="header-buttons">
+            <button onclick="goToHome()">Home</button>
+        </div>
+        <div class="vendor-category">Florist</div>
+        <div class="header-buttons">
+            <button class="logout" onclick="logout()">Log Out</button>
+        </div>
+    </header>
+
+    <section class="vendor-list">
+        <div class="vendor-card">
+            <h3>The Blooming Basket</h3>
+            <p>Contact Details:</p>
+            <p>Phone: (123) 456-7890</p>
+            <p>Email: blooms@example.com</p>
+            <p>Address: 12 Flower Lane, Anytown</p>
+            <button onclick="goToShop('The Blooming Basket')">Shop Item</button>
+        </div>
+        <div class="vendor-card">
+            <h3>Petal Paradise</h3>
+            <p>Contact Details:</p>
+            <p>Phone: (987) 654-3210</p>
+            <p>Email: petals@paradise.net</p>
+            <p>Address: 45 Garden Avenue, Springville</p>
+            <button onclick="goToShop('Petal Paradise')">Shop Item</button>
+        </div>
+        <div class="vendor-card">
+            <h3>Floral Fantasia</h3>
+            <p>Contact Details:</p>
+            <p>Phone: (555) 123-4567</p>
+            <p>Email: flowers@fantasia.org</p>
+            <p>Address: 78 Blossom Street, Meadowbrook</p>
+            <button onclick="goToShop('Floral Fantasia')">Shop Item</button>
+        </div>
+        <div class="vendor-card">
+            <h3>Elegant Blooms</h3>
+            <p>Contact Details:</p>
+            <p>Phone: (111) 222-3333</p>
+            <p>Email: elegant@blooms.com</p>
+            <p>Address: 90 Rose Court, Valleyview</p>
+            <button onclick="goToShop('Elegant Blooms')">Shop Item</button>
+        </div>
+    </section>
+
+    <script>
+        function goToHome() {
+            window.location.href = 'user_portol.html'; // Redirect to the user portal
+        }
+
+        function logout() {
+            window.location.href = 'index.html'; // Redirect to the homepage or login page
+        }
+
+        function goToShop(vendorName) {
+            alert(`Navigating to the shop of ${vendorName} (functionality not implemented).`);
+            // In a real application, this would navigate to the specific vendor's shop page,
+            // possibly passing the vendor's ID or name as a parameter.
+            // Example: window.location.href = 'vendor_shop.html?vendor=' + vendorName;
+        }
+    </script>
+</body>
+</html>
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Florist Vendors - Event Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+            padding-top: 20px;
+        }
+
+        .vendor-header {
+            background-color: #3f51b5;
+            color: white;
+            padding: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 80%;
+            max-width: 960px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .header-buttons button {
+            background: none;
+            border: 1px solid #4caf50; /* Green */
+            color: #4caf50;
+            padding: 10px 15px;
+            margin-left: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .header-buttons button:hover {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .header-buttons button.logout {
+            border-color: #f44336; /* Red */
+            color: #f44336;
+        }
+
+        .header-buttons button.logout:hover {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .vendor-category {
+            background-color: #3f51b5;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+
+        .vendor-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 80%;
+            max-width: 960px;
+            margin-bottom: 20px;
+        }
+
+        .vendor-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .vendor-card h3 {
+            color: #3f51b5;
+            margin-bottom: 10px;
+        }
+
+        .vendor-card p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .vendor-card button {
+            background: none;
+            border: 1px solid #4caf50; /* Green */
+            color: #4caf50;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-top: 5px; /* Add some spacing between buttons */
+        }
+
+        .vendor-card button:hover {
+            background-color: #4caf50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header class="vendor-header">
+        <div class="header-buttons">
+            <button onclick="goToHome()">Home</button>
+        </div>
+        <div class="vendor-category">Florist</div>
+        <div class="header-buttons">
+            <button class="logout" onclick="logout()">Log Out</button>
+        </div>
+    </header>
+
+    <section class="vendor-list">
+        <div class="vendor-card">
+            <h3>The Blooming Basket</h3>
+            <p>Contact Details:</p>
+            <p>Phone: (123) 456-7890</p>
+            <p>Email: blooms@example.com</p>
+            <p>Address: 12 Flower Lane, Anytown</p>
+            <button onclick="goToShop('The Blooming Basket')">Shop Item</button>
+            <button onclick="goToProducts('The Blooming Basket')">Products</button>
+        </div>
+        <div class="vendor-card">
+            <h3>Petal Paradise</h3>
+            <p>Contact Details:</p>
+            <p>Phone: (987) 654-3210</p>
+            <p>Email: petals@paradise.net</p>
+            <p>Address: 45 Garden Avenue, Springville</p>
+            <button onclick="goToShop('Petal Paradise')">Shop Item</button>
+            <button onclick="goToProducts('Petal Paradise')">Products</button>
+        </div>
+        <div class="vendor-card">
+            <h3>Floral Fantasia</h3>
+            <p>Contact Details:</p>
+            <p>Phone: (555) 123-4567</p>
+            <p>Email: flowers@fantasia.org</p>
+            <p>Address: 78 Blossom Street, Meadowbrook</p>
+            <button onclick="goToShop('Floral Fantasia')">Shop Item</button>
+            <button onclick="goToProducts('Floral Fantasia')">Products</button>
+        </div>
+        <div class="vendor-card">
+            <h3>Elegant Blooms</h3>
+            <p>Contact Details:</p>
+            <p>Phone: (111) 222-3333</p>
+            <p>Email: elegant@blooms.com</p>
+            <p>Address: 90 Rose Court, Valleyview</p>
+            <button onclick="goToShop('Elegant Blooms')">Shop Item</button>
+            <button onclick="goToProducts('Elegant Blooms')">Products</button>
+        </div>
+    </section>
+
+    <script>
+        function goToHome() {
+            window.location.href = 'user_portol.html';
+        }
+
+        function logout() {
+            window.location.href = 'index.html';
+        }
+
+        function goToShop(vendorName) {
+            alert(`Navigating to the shop of ${vendorName} (functionality not implemented).`);
+        }
+
+        function goToProducts(vendorName) {
+            window.location.href = 'products.html?vendor=' + encodeURIComponent(vendorName);
+            // In a real application, the products.html page would use the 'vendor' parameter
+            // to fetch and display the products of the selected vendor.
+        }
+    </script>
+</body>
+</html>

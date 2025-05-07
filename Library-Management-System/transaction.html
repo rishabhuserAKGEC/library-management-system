@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .vendor-header {
+            background-color: #3f51b5;
+            color: white;
+            padding: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .vendor-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .vendor-info span {
+            margin-left: 10px;
+        }
+
+        .vendor-actions button {
+            background-color: #4caf50; /* Green */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-left: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .vendor-actions button:hover {
+            background-color: #43a047;
+        }
+
+        .vendor-actions button.logout {
+            background-color: #f44336; /* Red */
+        }
+
+        .vendor-actions button.logout:hover {
+            background-color: #d32f2f;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .transaction-list-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .transaction-list-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* Adjust columns as needed */
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 10px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .transaction-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* Adjust columns as needed */
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+        }
+
+        .transaction-item:last-child {
+            border-bottom: none;
+        }
+
+        .filter-options {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .filter-options label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .filter-options select,
+        .filter-options input[type="date"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header class="vendor-header">
+        <div class="vendor-info">
+            Welcome, <span id="vendorName">Vendor Name</span>
+        </div>
+        <div class="vendor-actions">
+            <button onclick="goToYourItems()">Your Item</button>
+            <button onclick="goToAddNewItem()">Add New Item</button>
+            <button class="active">Transaction</button>
+            <button class="logout" onclick="logout()">Log Out</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="transaction-list-section">
+            <h2>Transaction History</h2>
+
+            <div class="filter-options">
+                <label for="filterType">Filter By:</label>
+                <select id="filterType" onchange="applyFilters()">
+                    <option value="all">All Transactions</option>
+                    <option value="item">Item Name</option>
+                    <option value="date">Date</option>
+                    <option value="status">Status</option>
+                </select>
+
+                <div id="itemFilter" style="display: none;">
+                    <label for="itemName">Item:</label>
+                    <input type="text" id="itemName" onkeyup="applyFilters()">
+                </div>
+
+                <div id="dateFilter" style="display: none;">
+                    <label for="fromDate">From:</label>
+                    <input type="date" id="fromDate" onchange="applyFilters()">
+                    <label for="toDate">To:</label>
+                    <input type="date" id="toDate" onchange="applyFilters()">
+                </div>
+
+                <div id="statusFilter" style="display: none;">
+                    <label for="status">Status:</label>
+                    <select id="status" onchange="applyFilters()">
+                        <option value="">Any</option>
+                        <option value="completed">Completed</option>
+                        <option value="pending">Pending</option>
+                        <option value="failed">Failed</option>
+                        </select>
+                </div>
+            </div>
+
+            <div class="transaction-list-header">
+                <div>Transaction ID</div>
+                <div>Item Name</div>
+                <div>Transaction Date</div>
+                <div>Amount</div>
+                <div>Status</div>
+                </div>
+            <div id="transactionList">
+                </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('vendorName').textContent = 'Vendor 123'; // Replace with dynamic vendor name
+            loadTransactions();
+            setupFilterVisibility();
+        });
+
+        function goToYourItems() {
+            window.location.href = ''; // Replace with the actual page URL
+        }
+
+        function goToAddNewItem() {
+            window.location.href = 'add_new_item.html'; // Replace with the actual page URL
+        }
+
+        function logout() {
+            window.location.href = 'index.html'; // Redirect to the homepage or login page
+        }
+
+        function setupFilterVisibility() {
+            const filterType = document.getElementById('filterType');
+            const itemFilter = document.getElementById('itemFilter');
+            const dateFilter = document.getElementById('dateFilter');
+            const statusFilter = document.getElementById('statusFilter');
+
+            filterType.addEventListener('change', function() {
+                itemFilter.style.display = (this.value === 'item') ? 'block' : 'none';
+                dateFilter.style.display = (this.value === 'date') ? 'block' : 'none';
+                statusFilter.style.display = (this.value === 'status') ? 'block' : 'none';
+            });
+        }
+
+        let allTransactions = []; // Store all fetched transactions
+
+        function loadTransactions() {
+            // In a real application, you would fetch this data from a server-side API
+            // using fetch or XMLHttpRequest.
+            const sampleTransactions = [
+                { id: 'TXN001', itemName: 'Awesome Book', date: '2025-05-07', amount: 199, status: 'completed' },
+                { id: 'TXN002', itemName: 'Cool Gadget', date: '2025-05-06', amount: 499, status: 'completed' },
+                { id: 'TXN003', itemName: 'Stylish Shoe', date: '2025-05-08', amount: 799, status: 'pending' },
+                { id: 'TXN004', itemName: 'Awesome Book', date: '2025-05-05', amount: 199, status: 'completed' },
+                { id: 'TXN005', itemName: 'Delicious Cake', date: '2025-05-08', amount: 299, status: 'failed' },
+                // Add more transaction objects here
+            ];
+
+            allTransactions = sampleTransactions;
+            displayTransactions(allTransactions);
+        }
+
+        function displayTransactions(transactions) {
+            const transactionListContainer = document.getElementById('transactionList');
+            transactionListContainer.innerHTML = ''; // Clear existing transactions
+
+            if (transactions.length === 0) {
+                transactionListContainer.innerHTML = '<p>No transactions found.</p>';
+                return;
+            }
+
+            transactions.forEach(transaction => {
+                const transactionItem = document.createElement('div');
+                transactionItem.classList.add('transaction-item');
+                transactionItem.innerHTML = `
+                    <div>${transaction.id}</div>
+                    <div>${transaction.itemName}</div>
+                    <div>${transaction.date}</div>
+                    <div>Rs/- ${transaction.amount}</div>
+                    <div>${transaction.status}</div>
+                    `;
+                transactionListContainer.appendChild(transactionItem);
+            });
+        }
+
+        function applyFilters() {
+            const filterType = document.getElementById('filterType').value;
+            let filteredTransactions = [...allTransactions]; // Start with all transactions
+
+            if (filterType === 'item') {
+                const itemName = document.getElementById('itemName').value.toLowerCase();
+                filteredTransactions = filteredTransactions.filter(txn =>
+                    txn.itemName.toLowerCase().includes(itemName)
+                );
+            } else if (filterType === 'date') {
+                const fromDate = document.getElementById('fromDate').value;
+                const toDate = document.getElementById('toDate').value;
+
+                filteredTransactions = filteredTransactions.filter(txn => {
+                    const transactionDate = new Date(txn.date);
+                    const from = fromDate ? new Date(fromDate) : null;
+                    const to = toDate ? new Date(toDate) : null;
+
+                    if (from && transactionDate < from) return false;
+                    if (to && transactionDate > to) return false;
+                    return true;
+                });
+            } else if (filterType === 'status') {
+                const status = document.getElementById('status').value;
+                if (status) {
+                    filteredTransactions = filteredTransactions.filter(txn => txn.status === status);
+                }
+            }
+
+            displayTransactions(filteredTransactions);
+        }
+    </script>
+</body>
+</html>

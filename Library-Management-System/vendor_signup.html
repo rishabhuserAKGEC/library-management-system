@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Sign Up</title>
+    <link rel="stylesheet" href="vendor_style.css">
+    <style>
+        /* Basic styling - you might have more in vendor_style.css */
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .signup-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+
+        .header-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .header-buttons button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .chart-button {
+            background-color: #007bff; /* Example active color */
+            color: white;
+        }
+
+        .back-button {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .input-group input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        .signup-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <div class="header-buttons">
+            <button class="chart-button" onclick="goToChart()">CHART</button>
+            <button class="back-button" onclick="window.location.href='index.html'">BACK</button>
+        </div>
+        <h1>Vendor Registration</h1>
+        <form id="signupForm" onsubmit="return validateForm()">
+            <div class="input-group">
+                <label for="name">Admin Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Admin Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <div class="input-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+            </div>
+            <p id="passwordMatchError" class="error-message" style="display: none;">Passwords do not match.</p>
+            <button type="submit" class="signup-button">Sign Up</button>
+        </form>
+    </div>
+
+    <script>
+        function goToChart() {
+            // Replace 'vendor_chart.html' with the actual URL of your chart page
+            window.location.href = "";
+        }
+
+        function validateForm() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const passwordMatchError = document.getElementById('passwordMatchError');
+
+            if (password !== confirmPassword) {
+                passwordMatchError.style.display = 'block';
+                return false; // Prevent form submission
+            } else {
+                passwordMatchError.style.display = 'none';
+                // In a real application, you would typically send this data to a server
+                // for processing and database storage.
+                alert('Sign Up Successful (Client-side validation only)');
+                // Optionally redirect the user after successful (client-side) validation
+                // window.location.href = 'vendor_dashboard.html';
+                return true; // Allow form submission (if you're handling server-side)
+            }
+        }
+    </script>
+</body>
+</html>

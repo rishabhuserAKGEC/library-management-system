@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest List</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .user-header {
+            background-color: #3f51b5;
+            color: white;
+            padding: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-info span {
+            margin-left: 10px;
+        }
+
+        .user-actions button {
+            background-color: #4caf50; /* Green */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-left: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .user-actions button:hover {
+            background-color: #43a047;
+        }
+
+        .user-actions button.logout {
+            background-color: #f44336; /* Red */
+        }
+
+        .user-actions button.logout:hover {
+            background-color: #d32f2f;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .guest-list-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .guest-list-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr; /* Adjust columns as needed */
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 10px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .guest-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr; /* Adjust columns as needed */
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+        }
+
+        .guest-item:last-child {
+            border-bottom: none;
+        }
+
+        .guest-actions button {
+            background: none;
+            border: 1px solid #777;
+            color: #777;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-right: 5px;
+        }
+
+        .guest-actions button:hover {
+            background-color: #eee;
+            color: #333;
+            border-color: #333;
+        }
+
+        .guest-actions button.track {
+            border-color: #007bff;
+            color: #007bff;
+        }
+
+        .guest-actions button.track:hover {
+            background-color: #e1f5fe;
+        }
+
+        .guest-details {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+
+        .guest-details h3 {
+            color: #3f51b5;
+            margin-bottom: 10px;
+        }
+
+        .guest-details p {
+            margin-bottom: 8px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header class="user-header">
+        <div class="user-info">
+            Welcome, <span id="userName">User Name</span>
+        </div>
+        <div class="user-actions">
+            <button onclick="goToVendorList()">Vendor</button>
+            <button onclick="goToCart()">Cart</button>
+            <button class="active">Guest List</button>
+            <button onclick="goToOrderStatus()">Order Status</button>
+            <button class="logout" onclick="logout()">Log Out</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="guest-list-section">
+            <h2>Recently Visited (Guest Users)</h2>
+            <div class="guest-list-header">
+                <div>Guest ID</div>
+                <div>Last Visit</div>
+                <div>Items Viewed</div>
+                <div>Actions</div>
+            </div>
+            <div id="guestList">
+                </div>
+        </section>
+
+        <section id="guestDetailsSection" class="guest-details" style="display: none;">
+            <h3>Guest Details</h3>
+            <p><strong>Guest ID:</strong> <span id="guestIdDetails"></span></p>
+            <p><strong>Last Visited:</strong> <span id="lastVisitDetails"></span></p>
+            <p><strong>Items Viewed:</strong> <ul id="viewedItemsList"></ul></p>
+            </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('userName').textContent = 'Current User'; // Replace with dynamic user name
+            loadGuestList();
+        });
+
+        function goToVendorList() {
+            window.location.href = 'user_portol.html'; // Replace with actual URL
+        }
+
+        function goToCart() {
+            window.location.href = 'cart.html'; // Replace with actual URL
+        }
+
+        function goToOrderStatus() {
+            window.location.href = 'order_status.html'; // Replace with actual URL
+        }
+
+        function logout() {
+            window.location.href = 'index.html'; // Replace with actual logout logic
+        }
+
+        let allGuests = []; // Store all guest user data
+
+        function loadGuestList() {
+            // In a real application, fetch this data from the server.
+            const sampleGuests = [
+                { guestId: 'GUEST001', lastVisit: '2025-05-07 22:15:00', viewedItems: ['Decoration Item A', 'Lighting Set B'] },
+                { guestId: 'GUEST002', lastVisit: '2025-05-08 09:30:00', viewedItems: ['Catering Package X', 'Florist Service Y'] },
+                { guestId: 'GUEST003', lastVisit: '2025-05-06 14:00:00', viewedItems: ['Decoration Item C'] },
+                // Add more guest data here
+            ];
+            allGuests = sampleGuests;
+            displayGuestList(allGuests);
+        }
+
+        function displayGuestList(guests) {
+            const guestListContainer = document.getElementById('guestList');
+            guestListContainer.innerHTML = '';
+
+            guests.forEach(guest => {
+                const guestItem = document.createElement('div');
+                guestItem.classList.add('guest-item');
+                guestItem.innerHTML = `
+                    <div>${guest.guestId}</div>
+                    <div>${guest.lastVisit}</div>
+                    <div>${guest.viewedItems.join(', ')}</div>
+                    <div class="guest-actions">
+                        <button class="track" onclick="showGuestDetails('${guest.guestId}')">Track</button>
+                    </div>
+                `;
+                guestListContainer.appendChild(guestItem);
+            });
+        }
+
+        function showGuestDetails(guestId) {
+            const guest = allGuests.find(g => g.guestId === guestId);
+            if (guest) {
+                document.getElementById('guestIdDetails').textContent = guest.guestId;
+                document.getElementById('lastVisitDetails').textContent = guest.lastVisit;
+
+                const viewedItemsList = document.getElementById('viewedItemsList');
+                viewedItemsList.innerHTML = '';
+                guest.viewedItems.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = item;
+                    viewedItemsList.appendChild(li);
+                });
+
+                document.getElementById('guestDetailsSection').style.display = 'block';
+                // Potentially scroll to the details section
+                document.getElementById('guestDetailsSection').scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert('Guest details not found.');
+            }
+        }
+
+        // Functionality inspired by Amazon's "visited guest" features:
+
+        // 1. Tracking Viewed Items:
+        //    - The `viewedItems` array in the sample data simulates this. In a real application,
+        //      you'd log the items viewed by anonymous users (perhaps using cookies or temporary sessions)
+        //      and store this information server-side, linking it to a guest identifier.
+
+        // 2. Recommendations Based on Viewed Items:
+        //    - You could add a section in the `guestDetailsSection` to display recommendations
+        //      based on the `viewedItems`. This would require server-side logic to analyze
+        //      viewed items and suggest related products or services.
+
+        // 3. Option to Convert to Registered User:
+        //    - You might add a button in the `guestDetailsSection` or the guest list to
+        //      prompt the guest to register. Clicking this could pre-fill some information
+        //      based on their browsing history (if tracked).
+
+        // 4. Targeted Promotions:
+        //    - Based on the viewed items, you could potentially trigger targeted promotions
+        //      or discounts if the guest revisits (again, this requires server-side tracking
+        //      and logic).
+
+        // 5. Anonymized Analytics:
+        //    - You can use the data of viewed items by guest users to understand trends
+        //      and popular items, even without knowing the individual identities.
+
+        // Implementation Notes for Real Application:
+        // - Guest user tracking would likely involve assigning a temporary ID (e.g., a cookie).
+        // - Viewed item data would need to be stored server-side, associated with the guest ID.
+        // - The "Track" button would trigger a request to the server to retrieve more details
+        //   about the guest's activity.
+        // - Features like recommendations and targeted promotions would require more complex
+        //   server-side algorithms and data analysis.
+    </script>
+</body>
+</html>

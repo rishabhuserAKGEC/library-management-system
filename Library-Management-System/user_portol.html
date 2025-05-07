@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Portal - Event Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .portal-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 600px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #3f51b5;
+            margin-bottom: 20px;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Adjusted for the dropdown */
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .portal-button {
+            background-color: #3f51b5;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .portal-button:hover {
+            background-color: #303f9f;
+        }
+
+        .logout-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            margin-top: 20px;
+            grid-column: 1 / -1; /* Make it span the whole width */
+        }
+
+        .logout-button:hover {
+            background-color: #d32f2f;
+        }
+
+        .vendor-dropdown-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .vendor-dropdown-button {
+            background-color: #009688; /* Teal color for Vendor */
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .vendor-dropdown-button:hover {
+            background-color: #00796b;
+        }
+
+        .vendor-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+            left: 0;
+            top: 100%;
+            margin-top: 1px;
+            text-align: left;
+        }
+
+        .vendor-dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        .vendor-dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .vendor-dropdown-container:hover .vendor-dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="portal-container">
+        <h2>Welcome User</h2>
+
+        <div class="vendor-dropdown-container">
+            <button class="vendor-dropdown-button">Vendor Services</button>
+            <div class="vendor-dropdown-content">
+                <a href="catering_vendors.html">Catering</a>
+                <a href="vendor_page.html">Florist</a>
+                <a href="decorations_vendors.html">Decoration</a>
+                <a href="lighting_vendors.html">Lighting</a>
+            </div>
+        </div>
+
+        <div class="button-grid">
+            <a href="cart.html" class="portal-button">Cart</a>
+            <a href="guest_list.html" class="portal-button">Guest List</a>
+            <a href="order_status.html" class="portal-button">Order Status</a>
+        </div>
+
+        <a href="index.html" class="logout-button">Log Out</a>
+    </div>
+
+    <script>
+        // No specific JavaScript functionality needed for basic navigation in this setup.
+        // The links in the dropdown and button grid handle the navigation directly.
+    </script>
+</body>
+</html>

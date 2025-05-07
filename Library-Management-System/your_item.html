@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Items</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .item-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .item-card {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #f9f9f9;
+        }
+
+        .item-details {
+            flex-grow: 1;
+            margin-right: 15px;
+        }
+
+        .item-details h3 {
+            margin-top: 0;
+            color: #555;
+        }
+
+        .item-details p {
+            color: #777;
+            margin-bottom: 5px;
+        }
+
+        .item-actions a, .item-actions button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        .item-actions a:hover, .item-actions button:hover {
+            background-color: #0056b3;
+        }
+
+        .item-actions .edit {
+            background-color: #28a745;
+        }
+
+        .item-actions .edit:hover {
+            background-color: #1e7e34;
+        }
+
+        .item-actions .delete {
+            background-color: #dc3545;
+        }
+
+        .item-actions .delete:hover {
+            background-color: #c82333;
+        }
+
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .pagination a, .pagination span {
+            display: inline-block;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            text-decoration: none;
+            margin: 0 5px;
+            border-radius: 4px;
+            color: #333;
+        }
+
+        .pagination a:hover {
+            background-color: #eee;
+        }
+
+        .pagination .current {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .filter-section {
+            background-color: #eee;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .filter-section label {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .filter-section input[type="text"],
+        .filter-section select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Items</h1>
+
+        <div class="filter-section">
+            <label for="search">Search Item:</label>
+            <input type="text" id="search" placeholder="Enter item name or ID">
+            <label for="category">Filter by Category:</label>
+            <select id="category">
+                <option value="">All Categories</option>
+                <option value="books">Books</option>
+                <option value="electronics">Electronics</option>
+                <option value="clothing">Clothing</option>
+                </select>
+            <button>Filter</button>
+        </div>
+
+        <ul class="item-list">
+            <li class="item-card">
+                <div class="item-details">
+                    <h3>Book: The Great Gatsby</h3>
+                    <p>ID: BG001</p>
+                    <p>Category: Books</p>
+                    <p>Description: A classic novel about the American Dream.</p>
+                </div>
+                <div class="item-actions">
+                    <a href="#" class="edit">Edit</a>
+                    <button class="delete">Delete</button>
+                </div>
+            </li>
+            <li class="item-card">
+                <div class="item-details">
+                    <h3>Laptop: MacBook Air</h3>
+                    <p>ID: EL005</p>
+                    <p>Category: Electronics</p>
+                    <p>Description: Lightweight and powerful laptop.</p>
+                </div>
+                <div class="item-actions">
+                    <a href="#" class="edit">Edit</a>
+                    <button class="delete">Delete</button>
+                </div>
+            </li>
+            <li class="item-card">
+                <div class="item-details">
+                    <h3>T-Shirt: Cotton Blue</h3>
+                    <p>ID: CL012</p>
+                    <p>Category: Clothing</p>
+                    <p>Description: Comfortable cotton t-shirt.</p>
+                </div>
+                <div class="item-actions">
+                    <a href="#" class="edit">Edit</a>
+                    <button class="delete">Delete</button>
+                </div>
+            </li>
+            </ul>
+
+        <div class="pagination">
+            <a href="#">&laquo;</a>
+            <a href="#" class="current">1</a>
+            <a href="#">2</a>
+            <a href="#">&raquo;</a>
+        </div>
+
+        <p><a href="vendor_dashboard.html">Back to Dashboard</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Item - Event Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+            padding-top: 20px;
+        }
+
+        .request-header {
+            background-color: #3f51b5;
+            color: white;
+            padding: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 80%;
+            max-width: 600px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .header-buttons button {
+            background: none;
+            border: 1px solid #4caf50; /* Green */
+            color: #4caf50;
+            padding: 10px 15px;
+            margin-left: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .header-buttons button:hover {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .header-buttons button.logout {
+            border-color: #f44336; /* Red */
+            color: #f44336;
+        }
+
+        .header-buttons button.logout:hover {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .request-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .request-title {
+            color: #3f51b5;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group textarea {
+            width: calc(100% - 12px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-button {
+            background-color: #3f51b5; /* Blue */
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            background-color: #303f9f;
+        }
+    </style>
+</head>
+<body>
+    <header class="request-header">
+        <div class="header-buttons">
+            <button onclick="goToHome()">Home</button>
+        </div>
+        <div class="header-buttons">
+            <button class="logout" onclick="logout()">Log Out</button>
+        </div>
+    </header>
+
+    <div class="request-container">
+        <h2 class="request-title">Request an Item</h2>
+        <form id="requestForm">
+            <div class="form-group">
+                <label for="itemName">Item Name</label>
+                <input type="text" id="itemName" name="itemName" placeholder="Enter the name of the item" required>
+            </div>
+            <div class="form-group">
+                <label for="quantity">Quantity (Optional)</label>
+                <input type="text" id="quantity" name="quantity" placeholder="Enter desired quantity (if any)">
+            </div>
+            <div class="form-group">
+                <label for="description">Description / Additional Details</label>
+                <textarea id="description" name="description" placeholder="Provide any specific details or description of the item you need"></textarea>
+            </div>
+            <button type="button" class="submit-button" onclick="submitRequest()">Submit Request</button>
+        </form>
+    </div>
+
+    <script>
+        function goToHome() {
+            window.location.href = 'user_portol.html';
+        }
+
+        function logout() {
+            window.location.href = 'index.html';
+        }
+
+        function submitRequest() {
+            const itemName = document.getElementById('itemName').value;
+            const quantity = document.getElementById('quantity').value;
+            const description = document.getElementById('description').value;
+
+            // In a real application, you would send this data to your server
+            // to be processed and stored.
+            const requestData = {
+                itemName: itemName,
+                quantity: quantity,
+                description: description
+            };
+
+            console.log('Request Data:', requestData);
+
+            // For this example, we'll just show an alert.
+            alert('Your request for "' + itemName + '" has been submitted. We will review it shortly.');
+
+            // Optionally, you can redirect the user to a confirmation page
+            // window.location.href = 'request_submitted.html';
+        }
+    </script>
+</body>
+</html>
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Item - Event Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+            padding-top: 20px;
+        }
+
+        .request-header {
+            background-color: #3f51b5;
+            color: white;
+            padding: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 80%;
+            max-width: 960px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .header-buttons button {
+            background: none;
+            border: 1px solid #4caf50; /* Green */
+            color: #4caf50;
+            padding: 10px 15px;
+            margin-left: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .header-buttons button:hover {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .header-buttons button.logout {
+            border-color: #f44336; /* Red */
+            color: #f44336;
+        }
+
+        .header-buttons button.logout:hover {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .request-title {
+            background-color: #3f51b5;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            width: 80%;
+            max-width: 960px;
+            text-align: center;
+        }
+
+        .item-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            width: 80%;
+            max-width: 960px;
+            margin-bottom: 20px;
+        }
+
+        .item-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .item-card h3 {
+            color: #3f51b5;
+            margin-bottom: 10px;
+        }
+
+        .item-card button {
+            background-color: #007bff; /* Blue */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .item-card button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header class="request-header">
+        <div class="header-buttons">
+            <button onclick="goToHome()">Home</button>
+        </div>
+        <div class="header-buttons">
+            <button class="logout" onclick="logout()">Log Out</button>
+        </div>
+    </header>
+
+    <div class="request-title">Request Item</div>
+
+    <section class="item-grid">
+        <div class="item-card">
+            <h3>Item 1</h3>
+            <button onclick="requestThisItem('Item 1')">Request</button>
+        </div>
+        <div class="item-card">
+            <h3>Item 2</h3>
+            <button onclick="requestThisItem('Item 2')">Request</button>
+        </div>
+        <div class="item-card">
+            <h3>Item 3</h3>
+            <button onclick="requestThisItem('Item 3')">Request</button>
+        </div>
+        <div class="item-card">
+            <h3>Item 4</h3>
+            <button onclick="requestThisItem('Item 4')">Request</button>
+        </div>
+        </section>
+
+    <script>
+        function goToHome() {
+            window.location.href = 'user_portol.html';
+        }
+
+        function logout() {
+            window.location.href = 'index.html';
+        }
+
+        function requestThisItem(itemName) {
+            alert(`Request sent for "${itemName}" (functionality not implemented).`);
+            // In a real application, this would:
+            // 1. Potentially ask for more details about the request.
+            // 2. Send the request to the server.
+            // 3. Provide feedback to the user (e.g., a confirmation message).
+        }
+    </script>
+</body>
+</html>

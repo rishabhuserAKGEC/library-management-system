@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Products</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .vendor-header {
+            background-color: #3f51b5;
+            color: white;
+            padding: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .vendor-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .vendor-info span {
+            margin-left: 10px;
+        }
+
+        .vendor-actions button {
+            background-color: #4caf50; /* Green */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-left: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .vendor-actions button:hover {
+            background-color: #43a047;
+        }
+
+        .vendor-actions button.logout {
+            background-color: #f44336; /* Red */
+        }
+
+        .vendor-actions button.logout:hover {
+            background-color: #d32f2f;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .product-list-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-list-header {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr 1fr; /* Adjust column widths as needed */
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 10px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .product-item {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr 1fr; /* Adjust column widths as needed */
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+        }
+
+        .product-item:last-child {
+            border-bottom: none;
+        }
+
+        .product-image-container {
+            width: 80px;
+            height: 60px;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .product-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-actions button {
+            background: none;
+            border: 1px solid #777;
+            color: #777;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-right: 5px;
+        }
+
+        .product-actions button:hover {
+            background-color: #eee;
+            color: #333;
+            border-color: #333;
+        }
+
+        .product-actions button.delete {
+            border-color: #f44336;
+            color: #f44336;
+        }
+
+        .product-actions button.delete:hover {
+            background-color: #ffebee;
+        }
+
+        .product-actions button.update {
+            border-color: #4caf50;
+            color: #4caf50;
+        }
+
+        .product-actions button.update:hover {
+            background-color: #e8f5e9;
+        }
+    </style>
+</head>
+<body>
+    <header class="vendor-header">
+        <div class="vendor-info">
+            Welcome, <span id="vendorName">Vendor Name</span>
+        </div>
+        <div class="vendor-actions">
+            <button onclick="goToProductStatus()">Product Status</button>
+            <button onclick="goToRequestItem()">Request Item</button>
+            <button class="active">View Product</button>
+            <button class="logout" onclick="logout()">Log Out</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="product-list-section">
+            <h2>All Products</h2>
+            <div class="product-list-header">
+                <div>Product Image</div>
+                <div>Product Name</div>
+                <div>Product Price</div>
+                <div>Action</div>
+            </div>
+            <div id="allProductsList">
+                </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('vendorName').textContent = 'John Doe'; // Replace with dynamic vendor name
+
+            // Sample product data (replace with actual data fetching from server)
+            const allProducts = [
+                { id: 1, name: 'Awesome Book', price: 199, imageUrl: 'https://via.placeholder.com/80/87CEEB/FFFFFF?Text=Book' },
+                { id: 2, name: 'Cool Gadget', price: 499, imageUrl: 'https://via.placeholder.com/80/FFA07A/FFFFFF?Text=Gadget' },
+                { id: 3, name: 'Stylish Shoe', price: 799, imageUrl: 'https://via.placeholder.com/80/90EE90/FFFFFF?Text=Shoe' },
+                { id: 4, name: 'Delicious Cake', price: 299, imageUrl: 'https://via.placeholder.com/80/FFD700/000000?Text=Cake' },
+                // Add more product objects here
+            ];
+
+            displayAllProducts(allProducts);
+        });
+
+        function goToProductStatus() {
+            window.location.href = 'product_status.html'; // Replace with the actual page URL
+        }
+
+        function goToRequestItem() {
+            window.location.href = 'request_item.html'; // Replace with the actual page URL
+        }
+
+        function logout() {
+            window.location.href = 'index.html'; // Redirect to the homepage or login page
+        }
+
+        function displayAllProducts(products) {
+            const productListContainer = document.getElementById('allProductsList');
+            productListContainer.innerHTML = ''; // Clear any existing content
+
+            products.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.classList.add('product-item');
+                productItem.innerHTML = `
+                    <div class="product-image-container">
+                        <img src="${product.imageUrl}" alt="${product.name}">
+                    </div>
+                    <div>${product.name}</div>
+                    <div>Rs/- ${product.price}</div>
+                    <div class="product-actions">
+                        <button class="delete" onclick="deleteProduct(${product.id})">Delete</button>
+                        <button class="update" onclick="updateProduct(${product.id})">Update</button>
+                    </div>
+                `;
+                productListContainer.appendChild(productItem);
+            });
+        }
+
+        function deleteProduct(productId) {
+            alert(`Delete functionality for product ID ${productId} (not implemented in this example).`);
+            // In a real application, you would send a request to the server to delete the product
+            // and then update the displayed list.
+        }
+
+        function updateProduct(productId) {
+            alert(`Update functionality for product ID ${productId} (not implemented in this example).`);
+            // In a real application, you might navigate to an edit product page or show an inline form.
+        }
+    </script>
+</body>
+</html>

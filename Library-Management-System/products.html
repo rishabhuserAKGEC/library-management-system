@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Event Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+            padding-top: 20px;
+        }
+
+        .products-header {
+            background-color: #3f51b5;
+            color: white;
+            padding: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 80%;
+            max-width: 960px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .header-buttons button {
+            background: none;
+            border: 1px solid #4caf50; /* Green */
+            color: #4caf50;
+            padding: 10px 15px;
+            margin-left: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .header-buttons button:hover {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .header-buttons button.logout {
+            border-color: #f44336; /* Red */
+            color: #f44336;
+        }
+
+        .header-buttons button.logout:hover {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .vendor-name-display {
+            background-color: #3f51b5;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 80%;
+            max-width: 960px;
+            margin-bottom: 20px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-card h3 {
+            color: #3f51b5;
+            margin-bottom: 10px;
+        }
+
+        .product-card p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .product-card button {
+            background: none;
+            border: 1px solid #4caf50; /* Green */
+            color: #4caf50;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .product-card button:hover {
+            background-color: #4caf50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header class="products-header">
+        <div class="header-buttons">
+            <button onclick="goToHome()">Home</button>
+            <button onclick="goBackToVendors()">Vendors</button>
+        </div>
+        <div class="vendor-name-display" id="vendorName">Vendor Name</div>
+        <div class="header-buttons">
+            <button class="logout" onclick="logout()">Log Out</button>
+        </div>
+    </header>
+
+    <section class="product-list">
+        <div class="product-card">
+            <h3>Product 1</h3>
+            <p>Price: $10.99</p>
+            <button onclick="addToCart('Product 1', 10.99)">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <h3>Product 2</h3>
+            <p>Price: $15.50</p>
+            <button onclick="addToCart('Product 2', 15.50)">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <h3>Product 3</h3>
+            <p>Price: $8.75</p>
+            <button onclick="addToCart('Product 3', 8.75)">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <h3>Product 4</h3>
+            <p>Price: $22.00</p>
+            <button onclick="addToCart('Product 4', 22.00)">Add to Cart</button>
+        </div>
+        </section>
+
+    <script>
+        function goToHome() {
+            window.location.href = 'user_portol.html';
+        }
+
+        function logout() {
+            window.location.href = 'index.html';
+        }
+
+        function goBackToVendors() {
+            // Get the vendor name from the URL to navigate back to the correct vendor page
+            const urlParams = new URLSearchParams(window.location.search);
+            const vendor = urlParams.get('vendor');
+            if (vendor) {
+                // Determine the category based on the vendor (you might need a more robust way to do this)
+                let categoryPage = 'vendor_page.html'; // Default to Florist
+                if (vendor.toLowerCase().includes('catering')) {
+                    categoryPage = 'catering_vendors.html';
+                } else if (vendor.toLowerCase().includes('decor')) {
+                    categoryPage = 'decorations_vendors.html';
+                } else if (vendor.toLowerCase().includes('light')) {
+                    categoryPage = 'lighting_vendors.html';
+                } else if (vendor.toLowerCase().includes('bloom') || vendor.toLowerCase().includes('petal') || vendor.toLowerCase().includes('floral')) {
+                    categoryPage = 'florist_vendors.html';
+                }
+                window.location.href = categoryPage;
+            } else {
+                window.location.href = 'user_portol.html'; // If no vendor info, go back to portal
+            }
+        }
+
+        function addToCart(productName, price) {
+            alert(`"${productName}" with price $${price} added to cart (functionality not implemented).`);
+            // In a real application, this would add the product to a shopping cart,
+            // likely involving updating a server-side session or local storage.
+        }
+
+        // Get the vendor name from the URL and display it
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const vendorName = urlParams.get('vendor');
+            if (vendorName) {
+                document.getElementById('vendorName').innerText = vendorName;
+            } else {
+                document.getElementById('vendorName').innerText = 'Products'; // Default if no vendor
+            }
+        };
+    </script>
+</body>
+</html>

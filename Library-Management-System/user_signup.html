@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Signup - Event Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .signup-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #3f51b5;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .button {
+            background-color: #3f51b5;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .button:hover {
+            background-color: #303f9f;
+        }
+
+        .back-button {
+            background-color: #777;
+        }
+
+        .back-button:hover {
+            background-color: #555;
+        }
+
+        .chart-button {
+            background-color: #009688; /* Teal color */
+        }
+
+        .chart-button:hover {
+            background-color: #00796b;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>User Signup</h2>
+        <div class="button-container">
+            <a href="#" class="button chart-button" onclick="goToChart()">Chart</a>
+            <a href="index.html" class="button back-button">Back</a>
+        </div>
+
+        <form id="userSignupForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="button">Sign Up</button>
+        </form>
+    </div>
+
+    <script>
+        function goToChart() {
+            // In a real application, this would navigate to a chart page.
+            alert("Navigating to Chart (functionality not implemented in this example).");
+        }
+
+        document.getElementById('userSignupForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // In a real application, you would send this data to a server for registration.
+            console.log("Signup Data:", { name, email, password });
+            alert("User signed up successfully! (Data logged to console)");
+
+            // Optionally, redirect the user to another page after successful signup.
+            // window.location.href = 'user_dashboard.html';
+        });
+    </script>
+</body>
+</html>

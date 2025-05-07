@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Event Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+            padding-top: 20px;
+        }
+
+        .cart-header {
+            background-color: #3f51b5;
+            color: white;
+            padding: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 80%;
+            max-width: 960px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .header-buttons button {
+            background: none;
+            border: 1px solid #4caf50; /* Green */
+            color: #4caf50;
+            padding: 10px 15px;
+            margin-left: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .header-buttons button:hover {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .header-buttons button.logout {
+            border-color: #f44336; /* Red */
+            color: #f44336;
+        }
+
+        .header-buttons button.logout:hover {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .shopping-cart-title {
+            background-color: #3f51b5;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            width: 80%;
+            max-width: 960px;
+            text-align: center;
+        }
+
+        .cart-table {
+            width: 80%;
+            max-width: 960px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .cart-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .cart-table th, .cart-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .item-image {
+            width: 80px;
+            height: 80px;
+            margin-right: 15px;
+            border-radius: 4px;
+            background-color: #eee; /* Placeholder for image */
+        }
+
+        .quantity-selector {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 60px;
+        }
+
+        .remove-button {
+            background: none;
+            border: 1px solid #f44336; /* Red */
+            color: #f44336;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-left: 10px;
+        }
+
+        .remove-button:hover {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .cart-summary {
+            width: 80%;
+            max-width: 960px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .grand-total {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .delete-all-button {
+            background: none;
+            border: 1px solid #f44336; /* Red */
+            color: #f44336;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .delete-all-button:hover {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .checkout-button {
+            background-color: #4caf50; /* Green */
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .checkout-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header class="cart-header">
+        <div class="header-buttons">
+            <button onclick="goToHome()">Home</button>
+            <button onclick="goToViewProducts()">View Product</button>
+            <button onclick="goToRequestItem()">Request Item</button>
+            <button onclick="goToProductStatus()">Product Status</button>
+        </div>
+        <div class="header-buttons">
+            <button class="logout" onclick="logout()">Log Out</button>
+        </div>
+    </header>
+
+    <div class="shopping-cart-title">Shopping Cart</div>
+
+    <div class="cart-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="cartItems">
+                <tr class="cart-item">
+                    <td><div class="item-image"></div></td>
+                    <td>Product Name 1</td>
+                    <td>100/-</td>
+                    <td>
+                        <select class="quantity-selector" onchange="updateTotal(this, 100)">
+                            <option value="1">1</option>
+                            <option value="2" selected>2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                    <td class="item-total">200/-</td>
+                    <td><button class="remove-button" onclick="removeItem(this)">Remove</button></td>
+                </tr>
+                </tbody>
+        </table>
+    </div>
+
+    <div class="cart-summary">
+        <div class="grand-total">Grand Total: <span id="grandTotal">200/-</span></div>
+        <button class="delete-all-button" onclick="deleteAllItems()">Delete All</button>
+    </div>
+
+    <button class="checkout-button" onclick="proceedToCheckout()">Proceed to Checkout</button>
+
+    <script>
+        // Sample cart data (in a real application, this would be fetched from storage or backend)
+        const cartData = [
+            { name: 'Product Name 1', price: 100, quantity: 2 },
+            // Add more items here
+        ];
+
+        const cartItemsContainer = document.getElementById('cartItems');
+        const grandTotalElement = document.getElementById('grandTotal');
+
+        function goToHome() {
+            window.location.href = 'user_portol.html';
+        }
+
+        function goToViewProducts() {
+            window.location.href = 'products.html'; // You might need to pass vendor info if coming from a specific vendor
+        }
+
+        function goToRequestItem() {
+            window.location.href = 'request_item.html'; // Create this page
+        }
+
+        function goToProductStatus() {
+            window.location.href = 'product_status.html'; // Create this page
+        }
+
+        function logout() {
+            window.location.href = 'index.html';
+        }
+
+        function removeItem(button) {
+            const row = button.parentNode.parentNode;
+            row.remove();
+            updateGrandTotal();
+            // In a real application, you would also update the cart data in storage/backend
+        }
+
+        function updateTotal(selectElement, price) {
+            const quantity = parseInt(selectElement.value);
+            const row = selectElement.parentNode.parentNode;
+            const totalElement = row.querySelector('.item-total');
+            const newTotal = quantity * price;
+            totalElement.textContent = `${newTotal}/-`;
+            updateGrandTotal();
+            // In a real application, you would also update the cart data
+        }
+
+        function deleteAllItems() {
+            cartItemsContainer.innerHTML = '';
+            updateGrandTotal();
+            // In a real application, you would also clear the cart data
+        }
+
+        function proceedToCheckout() {
+            window.location.href = 'checkout.html';
+            // In a real application, you might want to pass the cart data to the checkout page
+            // (e.g., using local storage or query parameters).
+        }
+
+        function updateGrandTotal() {
+            let total = 0;
+            const itemTotals = document.querySelectorAll('.item-total');
+            itemTotals.forEach(itemTotal => {
+                const price = parseInt(itemTotal.textContent.replace('/-', ''));
+                total += price;
+            });
+            grandTotalElement.textContent = `${total}/-`;
+        }
+
+        // Function to dynamically render cart items from cartData
+        function renderCartItems() {
+            cartData.forEach(item => {
+                const row = document.createElement('tr');
+                row.classList.add('cart-item');
+                row.innerHTML = `
+                    <td><div class="item-image"></div></td>
+                    <td>${item.name}</td>
+                    <td>${item.price}/-</td>
+                    <td>
+                        <select class="quantity-selector" onchange="updateTotal(this, ${item.price})">
+                            ${generateQuantityOptions(item.quantity)}
+                        </select>
+                    </td>
+                    <td class="item-total">${item.price * item.quantity}/-</td>
+                    <td><button class="remove-button" onclick="removeItem(this)">Remove</button></td>
+                `;
+                cartItemsContainer.appendChild(row);
+            });
+            updateGrandTotal();
+        }
+
+        function generateQuantityOptions(selectedQuantity) {
+            let options = '';
+            for (let i = 1; i <= 10; i++) {
+                options += `<option value="${i}" ${i === selectedQuantity ? 'selected' : ''}>${i}</option>`;
+            }
+            return options;
+        }
+
+        // Initial rendering of cart items
+        renderCartItems();
+    </script>
+</body>
+</html>

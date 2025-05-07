@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Panel - Add Item</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .vendor-header {
+            background-color: #3f51b5;
+            color: white;
+            padding: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .vendor-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .vendor-info span {
+            margin-left: 10px;
+        }
+
+        .vendor-actions button {
+            background-color: #4caf50; /* Green */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-left: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .vendor-actions button:hover {
+            background-color: #43a047;
+        }
+
+        .vendor-actions button.logout {
+            background-color: #f44336; /* Red */
+        }
+
+        .vendor-actions button.logout:hover {
+            background-color: #d32f2f;
+        }
+
+        .container {
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .add-item-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .add-item-section h2 {
+            color: #3f51b5;
+            margin-bottom: 15px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        .add-button {
+            background-color: #3f51b5;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .add-button:hover {
+            background-color: #303f9f;
+        }
+
+        .product-list-section {
+            flex-grow: 1;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-list-header {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr 1fr; /* Adjust columns as needed */
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 10px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .product-item {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr 1fr; /* Adjust columns as needed */
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+        }
+
+        .product-item:last-child {
+            border-bottom: none;
+        }
+
+        .product-image-container {
+            width: 80px;
+            height: 60px;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .product-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-actions button {
+            background: none;
+            border: 1px solid #777;
+            color: #777;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-right: 5px;
+        }
+
+        .product-actions button:hover {
+            background-color: #eee;
+            color: #333;
+            border-color: #333;
+        }
+
+        .product-actions button.delete {
+            border-color: #f44336;
+            color: #f44336;
+        }
+
+        .product-actions button.delete:hover {
+            background-color: #ffebee;
+        }
+
+        .product-actions button.update {
+            border-color: #4caf50;
+            color: #4caf50;
+        }
+
+        .product-actions button.update:hover {
+            background-color: #e8f5e9;
+        }
+
+        /* Styles for Membership Section */
+        .membership-duration-group {
+            margin-bottom: 15px;
+        }
+
+        .membership-duration-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .membership-duration-options label {
+            margin-right: 15px;
+            color: #777;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header class="vendor-header">
+        <div class="vendor-info">
+            Welcome, <span id="vendorName">Vendor Name</span>
+        </div>
+        <div class="vendor-actions">
+            <button onclick="goToProductStatus()">Product Status</button>
+            <button onclick="goToRequestItem()">Request Item</button>
+            <button class="active" onclick="vendorProduct()">View Product</button>
+            <button class="logout" onclick="logout()">Log Out</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="add-item-section">
+            <h2>Add New Item</h2>
+            <form id="addItemForm">
+                <div class="input-group">
+                    <label for="itemType">Item Type:</label>
+                    <select id="itemType" class="input" onchange="toggleItemFields()">
+                        <option value="product">Product</option>
+                        <option value="membership">Membership</option>
+                    </select>
+                </div>
+
+                <div id="productFields">
+                    <div class="input-group">
+                        <label for="productName">Product Name:</label>
+                        <input type="text" id="productName" class="input" placeholder="Enter product name">
+                    </div>
+                    <div class="input-group">
+                        <label for="productPrice">Product Price (Rs/-):</label>
+                        <input type="number" id="productPrice" class="input" placeholder="Enter product price">
+                    </div>
+                    <div class="input-group">
+                        <label for="productImageURL">Product Image URL:</label>
+                        <input type="url" id="productImageURL" class="input" placeholder="Enter image URL">
+                    </div>
+                </div>
+
+                <div id="membershipFields" style="display: none;">
+                    <div class="input-group">
+                        <label for="memberName">Member Name:</label>
+                        <input type="text" id="memberName" class="input" placeholder="Enter member name">
+                    </div>
+                    <div class="input-group">
+                        <label for="memberEmail">Member Email:</label>
+                        <input type="email" id="memberEmail" class="input" placeholder="Enter member email">
+                    </div>
+                    <div class="input-group">
+                        <label for="membershipType">Membership Type:</label>
+                        <input type="text" id="membershipType" class="input" placeholder="Enter membership type">
+                    </div>
+                    <div class="membership-duration-group">
+                        <label>Membership Duration:</label>
+                        <div class="membership-duration-options">
+                            <label>
+                                <input type="radio" name="duration" value="6 months" checked> 6 months
+                            </label>
+                            <label>
+                                <input type="radio" name="duration" value="1 year"> 1 year
+                            </label>
+                            <label>
+                                <input type="radio" name="duration" value="2 years"> 2 years
+                            </label>
+                        </div>
+                    </div>
+                    <div id="membershipErrorMessage" class="error-message"></div>
+                </div>
+
+                <button type="button" class="add-button" onclick="addItem()">Add The Item</button>
+            </form>
+        </section>
+
+        <section class="product-list-section">
+            <h2>Your Items</h2>
+            <div class="product-list-header">
+                <div>Image</div>
+                <div>Name</div>
+                <div>Price/Type</div>
+                <div>Action</div>
+            </div>
+            <div id="itemList">
+                <div class="product-item">
+                    <div class="product-image-container">
+                        <img src="https://via.placeholder.com/80/87CEEB/FFFFFF?Text=Book" alt="Book">
+                    </div>
+                    <div>Sample Book</div>
+                    <div>Rs/- 199</div>
+                    <div class="product-actions">
+                        <button class="delete" onclick="deleteItem('product_1')">Delete</button>
+                        <button class="update" onclick="updateItem('product_1')">Update</button>
+                    </div>
+                </div>
+                <div class="product-item">
+                    <div></div>
+                    <div>Basic Membership</div>
+                    <div>6 months</div>
+                    <div class="product-actions">
+                        <button class="delete" onclick="deleteItem('membership_1')">Delete</button>
+                        <button class="update" onclick="updateItem('membership_1')">Update</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('vendorName').textContent = 'John Doe'; // Replace with dynamic vendor name
+            toggleItemFields(); // Initial setup of visible fields
+        });
+
+        function goToProductStatus() {
+            window.location.href = 'product_status2.html'; // Replace with actual URL
+        }
+
+        function goToRequestItem() {
+            window.location.href = 'request_item2.html'; // Replace with actual URL
+        }
+        function vendorProduct() {
+            window.location.href = 'vendor_product.html'; // Replace with actual logout logic
+        }
+        function logout() {
+            window.location.href = 'index.html'; // Replace with actual logout logic
+        }
+
+        function toggleItemFields() {
+            const itemType = document.getElementById('itemType').value;
+            const productFields = document.getElementById('productFields');
+            const membershipFields = document.getElementById('membershipFields');
+
+            if (itemType === 'product') {
+                productFields.style.display = 'block';
+                membershipFields.style.display = 'none';
+            } else if (itemType === 'membership') {
+                productFields.style.display = 'none';
+                membershipFields.style.display = 'block';
+            }
+        }
+
+        function addItem() {
+            const itemType = document.getElementById('itemType').value;
+            const itemList = document.getElementById('itemList');
+
+            if (itemType === 'product') {
+                const productName = document.getElementById('productName').value;
+                const productPrice = document.getElementById('productPrice').value;
+                const productImageURL = document.getElementById('productImageURL').value;
+
+                if (productName && productPrice && productImageURL) {
+                    const newItem = document.createElement('div');
+                    newItem.classList.add('product-item');
+                    newItem.innerHTML = `
+                        <div class="product-image-container">
+                            <img src="${productImageURL}" alt="${productName}">
+                        </div>
+                        <div>${productName}</div>
+                        <div>Rs/- ${productPrice}</div>
+                        <div class="product-actions">
+                            <button class="delete" onclick="deleteItem('product_' + generateUniqueId())">Delete</button>
+                            <button class="update" onclick="updateItem('product_' + generateUniqueId())">Update</button>
+                        </div>
+                    `;
+                    itemList.appendChild(newItem);
+                    document.getElementById('addItemForm').reset();
+                    toggleItemFields(); // Reset to product fields
+                    alert('Product added!');
+                } else {
+                    alert('Please fill in all the product details.');
+                }
+            } else if (itemType === 'membership') {
+                const memberName = document.getElementById('memberName').value;
+                const memberEmail = document.getElementById('memberEmail').value;
+                const membershipType = document.getElementById('membershipType').value;
+                const duration = document.querySelector('input[name="duration"]:checked');
+                const membershipErrorMessageDiv = document.getElementById('membershipErrorMessage');
+                membershipErrorMessageDiv.textContent = '';
+
+                if (!memberName || !memberEmail || !membershipType || !duration) {
+                    membershipErrorMessageDiv.textContent = 'Please fill in all the membership details and select a duration.';
+                    return;
+                }
+
+                const newItem = document.createElement('div');
+                newItem.classList.add('product-item');
+                newItem.innerHTML = `
+                    <div></div>
+                    <div>${membershipType} - ${memberName}</div>
+                    <div>${duration.value}</div>
+                    <div class="product-actions">
+                        <button class="delete" onclick="deleteItem('membership_' + generateUniqueId())">Delete</button>
+                        <button class="update" onclick="updateItem('membership_' + generateUniqueId())">Update</button>
+                    </div>
+                `;
+                itemList.appendChild(newItem);
+                document.getElementById('addItemForm').reset();
+                toggleItemFields(); // Reset to product fields
+                alert('Membership added!');
+            }
+        }
+
+        function deleteItem(itemId) {
+            alert(`Delete functionality for item ID ${itemId} (not implemented).`);
+            // In a real application, remove the item from the DOM and potentially the server.
+        }
+
+        function updateItem(itemId) {
+            alert(`Update functionality for item ID ${itemId} (not implemented).`);
+            // In a real application, navigate to an edit page or show an inline form.
+        }
+
+        function generateUniqueId() {
+            return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        }
+    </script>
+</body>
+</html>

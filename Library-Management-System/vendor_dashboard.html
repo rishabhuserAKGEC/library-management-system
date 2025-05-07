@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Dashboard</title>
+    <link rel="stylesheet" href="css/style.css"> <style>
+        body {
+            font-family: sans-serif;
+            background-color: #4472C4; /* Blue background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        .dashboard-container {
+            background-color: #ddd; /* Light grey container */
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .welcome-banner {
+            background-color: #ccc; /* Slightly darker grey banner */
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .dashboard-button {
+            background-color: #ddd; /* Light grey buttons */
+            color: #333;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none; /* To style as links if needed */
+        }
+
+        .dashboard-button:hover {
+            background-color: #ccc; /* Darker grey on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="welcome-banner">
+            <h2>Welcome</h2>
+            <p>Vendor</p>
+        </div>
+
+        <div class="dashboard-buttons">
+            <a href="your_item.html" class="dashboard-button">Your Item</a>
+            <a href="add_new_item.html" class="dashboard-button">Add New Item</a>
+            <a href="transaction.html" class="dashboard-button">Transaction</a>
+            <a href="index.html" class="dashboard-button">LogOut</a>
+        </div>
+    </div>
+</body>
+</html>

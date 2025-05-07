@@ -1,0 +1,499 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="index_style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-links">
+            <button class="nav-button" onclick="window.location.href='vendor_login.html'">Vendor</button>
+            <button class="nav-button" onclick="window.location.href='admin_login.html'">Admin</button>
+            <button class="nav-button" onclick="window.location.href='user_login.html'">User</button>
+            <div class="dropdown">
+                <button class="nav-button">Signup</button>
+                <div class="dropdown-content">
+                    <a href="vendor_signup.html">Vendor Signup</a>
+                    <a href="admin_signup.html">Admin Signup</a>
+                    <a href="user_signup.html">User Signup</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="nav-button">Login</button>
+                <div class="dropdown-content">
+                    <a href="vendor_login.html">Vendor Login</a>
+                    <a href="admin_login.html">Admin Login</a>
+                    <a href="user_login.html">User Login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>Menu</h3>
+                <button id="closeSidebarBtn" onclick="toggleSidebar()">✖</button>
+            </div>
+            <ul class="sidebar-links">
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#tabs-section">Details</a></li>
+                <li><a href="#trends">Trending</a></li>
+                <li><a href="#settings">Settings</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <section class="hero">
+                <h1>Welcome to Your Library</h1>
+                <p>Manage your library resources efficiently and effectively.</p>
+            </section>
+
+            <section id="about" class="about-us">
+                <h2>About Our Library Management System</h2>
+                <div class="accordion-container">
+                    <div class="accordion">
+                        <button class="accordion-button">For Librarians</button>
+                        <div class="accordion-content">
+                            <p>Our system provides librarians with tools to easily catalog new books, manage user accounts, track borrowing and returns, generate reports, and handle overdue notices.</p>
+                        </div>
+                    </div>
+                    <div class="accordion">
+                        <button class="accordion-button">For Users</button>
+                        <div class="accordion-content">
+                            <p>Users can browse the library catalog, search for specific books, reserve items, view their borrowing history, and manage their account details online.</p>
+                        </div>
+                    </div>
+                    <div class="accordion">
+                        <button class="accordion-button">Key Features</button>
+                        <div class="accordion-content">
+                            <ul>
+                                <li>Efficient book cataloging</li>
+                                <li>User-friendly search interface</li>
+                                <li>Online reservation system</li>
+                                <li>Automated overdue reminders</li>
+                                <li>Comprehensive reporting and analytics</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tabs-section" class="tabs-section">
+                <h2>Learn More</h2>
+                <div class="tabs">
+                    <button class="tab-button active" onclick="openTab('mission')">Our Mission</button>
+                    <button class="tab-button" onclick="openTab('technology')">Technology Used</button>
+                    <button class="tab-button" onclick="openTab('benefits')">Benefits</button>
+                </div>
+                <div id="mission" class="tab-content active">
+                    <p>Our mission is to empower libraries and their users with a seamless and intuitive management system that fosters a love for reading and facilitates access to knowledge.</p>
+                </div>
+                <div id="technology" class="tab-content">
+                    <p>This system is built using modern web technologies, focusing on scalability, security, and ease of maintenance. We utilize a robust database and efficient algorithms to ensure optimal performance.</p>
+                </div>
+                <div id="benefits" class="tab-content">
+                    <p>By implementing our Library Management System, libraries can streamline their operations, reduce administrative overhead, enhance user satisfaction, and gain valuable insights into their collection and usage patterns.</p>
+                </div>
+            </section>
+
+            <section id="search" class="search-filter">
+                <h2>Find Your Next Read</h2>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for books...">
+                    <button>Search</button>
+                </div>
+                <div class="filters">
+                    <label for="genre">Genre:</label>
+                    <select id="genre">
+                        <option value="">All</option>
+                        <option value="fiction">Fiction</option>
+                        <option value="mystery">Mystery</option>
+                        <option value="science-fiction">Science Fiction</option>
+                        <option value="history">History</option>
+                    </select>
+                    <label for="author">Author:</label>
+                    <input type="text" id="author" placeholder="Filter by author">
+                    <label for="format">Format:</label>
+                    <select id="format">
+                        <option value="">All</option>
+                        <option value="book">Book</option>
+                        <option value="ebook">E-book</option>
+                        <option value="audiobook">Audiobook</option>
+                    </select>
+                    <button class="filter-button">Apply Filters</button>
+                </div>
+            </section>
+
+            <section id="trends" class="trending-books">
+                <h2>Trending Now</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <img src="https://via.placeholder.com/150/771796/fff?Text=Book+1" alt="Book 1" title="Book Title One">
+                        <h3>Book Title One</h3>
+                        <p>Author Name</p>
+                    </div>
+                    <div class="card">
+                        <img src="https://via.placeholder.com/150/6495ED/fff?Text=Book+2" alt="Book 2" title="Another Great Book">
+                        <h3>Another Great Book</h3>
+                        <p>Another Author</p>
+                    </div>
+                    <div class="card">
+                        <img src="https://via.placeholder.com/150/8FBC8F/fff?Text=Book+3" alt="Book 3" title="Interesting Read">
+                        <h3>Interesting Read</h3>
+                        <p>Some Writer</p>
+                    </div>
+                    </div>
+                <div class="pagination">
+                    <button class="pagination-button disabled">Previous</button>
+                    <span class="page-number">1</span>
+                    <button class="pagination-button">Next</button>
+                </div>
+            </section>
+
+            <section class="progress-section">
+                <h2>Resource Loading</h2>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 75%;">75%</div>
+                </div>
+                <p class="tooltip-trigger" title="This indicates the current loading status of library resources.">Loading Status <span style="font-size: 0.8em;">(?)</span></p>
+            </section>
+
+            <section id="settings" class="settings-section">
+                <h2>Website Settings</h2>
+                <div class="theme-options">
+                    <button class="theme-button light-theme active" onclick="setTheme('light')">Light Theme</button>
+                    <button class="theme-button dark-theme" onclick="setTheme('dark')">Dark Theme</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#" target="_blank" title="LinkedIn"><img src="https://via.placeholder.com/30/0077B5/fff?Text=in" alt="LinkedIn"></a>
+                <a href="#" target="_blank" title="GitHub"><img src="https://via.placeholder.com/30/181717/fff?Text=gh" alt="GitHub"></a>
+                <a href="#" target="_blank" title="Twitter"><img src="https://via.placeholder.com/30/1DA1F2/fff?Text=tw" alt="Twitter"></a>
+                </div>
+            <div class="address">
+                <p>Library Management System Company</p>
+                <p>123 Main Street, Anytown, USA 12345</p>
+            </div>
+            <div class="services">
+                <p>Services:</p>
+                <ul>
+                    <li>Book Cataloging</li>
+                    <li>User Management</li>
+                    <li>Borrowing & Returns</li>
+                    <li>Reporting & Analytics</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Website created by Rishabh Chawla</p>
+        </div>
+    </footer>
+
+    <script>
+        const sidebar = document.querySelector('.sidebar');
+        const mainContent = document.querySelector('.main-content');
+
+        function toggleSidebar() {
+            sidebar.classList.toggle('open');
+            mainContent.classList.toggle('sidebar-open');
+        }
+
+        const accordionButtons = document.querySelectorAll('.accordion-button');
+        accordionButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                button.classList.toggle('active');
+                content.classList.toggle('open');
+            });
+        });
+
+        function openTab(tabId) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabContents.forEach(content => content.classList.remove('active'));
+            tabButtons.forEach(button => button.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function setTheme(theme) {
+            document.body.className = theme + '-theme';
+            const lightButton = document.querySelector('.light-theme');
+            const darkButton = document.querySelector('.dark-theme');
+            lightButton.classList.remove('active');
+            darkButton.classList.remove('active');
+            if (theme === 'light') {
+                lightButton.classList.add('active');
+            } else if (theme === 'dark') {
+                darkButton.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="index_style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-links">
+            <button class="nav-button" onclick="window.location.href='vendor_login.html'">Vendor</button>
+            <button class="nav-button" onclick="window.location.href='admin_login.html'">Admin</button>
+            <button class="nav-button" onclick="window.location.href='user_login.html'">User</button>
+            <div class="dropdown">
+                <button class="nav-button">Signup</button>
+                <div class="dropdown-content">
+                    <a href="vendor_signup.html">Vendor Signup</a>
+                    <a href="admin_signup.html">Admin Signup</a>
+                    <a href="user_signup.html">User Signup</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="nav-button">Login</button>
+                <div class="dropdown-content">
+                    <a href="vendor_login.html">Vendor Login</a>
+                    <a href="admin_login.html">Admin Login</a>
+                    <a href="user_login.html">User Login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>Menu</h3>
+                <button id="closeSidebarBtn" onclick="toggleSidebar()">✖</button>
+            </div>
+            <ul class="sidebar-links">
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#tabs-section">Details</a></li>
+                <li><a href="#trends">Trending</a></li>
+                <li><a href="#search">Find Books</a></li>
+                <li><a href="#settings">Settings</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>Unlock the World of Knowledge</h1>
+                    <p>Explore, Learn, and Discover with our Library Management System.</p>
+                    <button class="hero-button">Browse Catalog</button>
+                </div>
+            </section>
+
+            <section id="about" class="about-us">
+                <h2>About Our Library Management System</h2>
+                <div class="accordion-container">
+                    <div class="accordion">
+                        <button class="accordion-button">For Librarians</button>
+                        <div class="accordion-content">
+                            <p>Our system provides librarians with tools to easily catalog new books, manage user accounts, track borrowing and returns, generate reports, and handle overdue notices.</p>
+                        </div>
+                    </div>
+                    <div class="accordion">
+                        <button class="accordion-button">For Users</button>
+                        <div class="accordion-content">
+                            <p>Users can browse the library catalog, search for specific books, reserve items, view their borrowing history, and manage their account details online.</p>
+                        </div>
+                    </div>
+                    <div class="accordion">
+                        <button class="accordion-button">Key Features</button>
+                        <div class="accordion-content">
+                            <ul>
+                                <li>Efficient book cataloging</li>
+                                <li>User-friendly search interface</li>
+                                <li>Online reservation system</li>
+                                <li>Automated overdue reminders</li>
+                                <li>Comprehensive reporting and analytics</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tabs-section" class="tabs-section">
+                <h2>Learn More</h2>
+                <div class="tabs">
+                    <button class="tab-button active" onclick="openTab('mission')">Our Mission</button>
+                    <button class="tab-button" onclick="openTab('technology')">Technology Used</button>
+                    <button class="tab-button" onclick="openTab('benefits')">Benefits</button>
+                </div>
+                <div id="mission" class="tab-content active">
+                    <p>Our mission is to empower libraries and their users with a seamless and intuitive management system that fosters a love for reading and facilitates access to knowledge.</p>
+                </div>
+                <div id="technology" class="tab-content">
+                    <p>This system is built using modern web technologies, focusing on scalability, security, and ease of maintenance. We utilize a robust database and efficient algorithms to ensure optimal performance.</p>
+                </div>
+                <div id="benefits" class="tab-content">
+                    <p>By implementing our Library Management System, libraries can streamline their operations, reduce administrative overhead, enhance user satisfaction, and gain valuable insights into their collection and usage patterns.</p>
+                </div>
+            </section>
+
+            <section id="search" class="search-filter">
+                <h2>Find Your Next Read</h2>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for books...">
+                    <button>Search</button>
+                </div>
+                <div class="filters">
+                    <label for="genre">Genre:</label>
+                    <select id="genre">
+                        <option value="">All</option>
+                        <option value="fiction">Fiction</option>
+                        <option value="mystery">Mystery</option>
+                        <option value="science-fiction">Science Fiction</option>
+                        <option value="history">History</option>
+                    </select>
+                    <label for="author">Author:</label>
+                    <input type="text" id="author" placeholder="Filter by author">
+                    <label for="format">Format:</label>
+                    <select id="format">
+                        <option value="">All</option>
+                        <option value="book">Book</option>
+                        <option value="ebook">E-book</option>
+                        <option value="audiobook">Audiobook</option>
+                    </select>
+                    <button class="filter-button">Apply Filters</button>
+                </div>
+            </section>
+
+            <section id="trends" class="trending-books">
+                <h2>Trending Now</h2>
+                <div class="card-grid">
+                    <div class="card" title="Book Title One">
+                        <img src="https://via.placeholder.com/150/771796/fff?Text=Book+1" alt="Book 1">
+                        <h3>Book Title One</h3>
+                        <p>Author Name</p>
+                    </div>
+                    <div class="card" title="Another Great Book">
+                        <img src="https://via.placeholder.com/150/6495ED/fff?Text=Book+2" alt="Book 2">
+                        <h3>Another Great Book</h3>
+                        <p>Another Author</p>
+                    </div>
+                    <div class="card" title="Interesting Read">
+                        <img src="https://via.placeholder.com/150/8FBC8F/fff?Text=Book+3" alt="Book 3">
+                        <h3>Interesting Read</h3>
+                        <p>Some Writer</p>
+                    </div>
+                </div>
+                <div class="pagination">
+                    <button class="pagination-button disabled">Previous</button>
+                    <span class="page-number">1</span>
+                    <a href="#" class="pagination-button">2</a>
+                    <a href="#" class="pagination-button">3</a>
+                    <a href="#" class="pagination-button">4</a>
+                    <a href="#" class="pagination-button">5</a>
+                    <a href="#" class="pagination-button">6</a>
+                    <button class="pagination-button">Next</button>
+                </div>
+            </section>
+
+            <section class="progress-section">
+                <h2>Resource Loading</h2>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 75%;">75%</div>
+                </div>
+                <p class="tooltip-trigger" title="This indicates the current loading status of library resources.">Loading Status <span style="font-size: 0.8em;">(?)</span></p>
+            </section>
+
+            <section id="settings" class="settings-section">
+                <h2>Website Settings</h2>
+                <div class="theme-options">
+                    <button class="theme-button light-theme active" onclick="setTheme('light')">Light Theme</button>
+                    <button class="theme-button dark-theme" onclick="setTheme('dark')">Dark Theme</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#" target="_blank" title="LinkedIn"><img src="https://via.placeholder.com/30/0077B5/fff?Text=in" alt="LinkedIn"></a>
+                <a href="#" target="_blank" title="GitHub"><img src="https://via.placeholder.com/30/181717/fff?Text=gh" alt="GitHub"></a>
+                <a href="#" target="_blank" title="Twitter"><img src="https://via.placeholder.com/30/1DA1F2/fff?Text=tw" alt="Twitter"></a>
+            </div>
+            <div class="address">
+                <p>Library Management System Company</p>
+                <p>123 Main Street, Anytown, USA 12345</p>
+            </div>
+            <div class="services">
+                <p>Services:</p>
+                <ul>
+                    <li>Book Cataloging</li>
+                    <li>User Management</li>
+                    <li>Borrowing & Returns</li>
+                    <li>Reporting & Analytics</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Website created by Rishabh Chawla</p>
+        </div>
+    </footer>
+
+    <script>
+        const sidebar = document.querySelector('.sidebar');
+        const mainContent = document.querySelector('.main-content');
+
+        function toggleSidebar() {
+            sidebar.classList.toggle('open');
+            mainContent.classList.toggle('sidebar-open');
+        }
+
+        const accordionButtons = document.querySelectorAll('.accordion-button');
+        accordionButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                button.classList.toggle('active');
+                content.classList.toggle('open');
+            });
+        });
+
+        function openTab(tabId) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabContents.forEach(content => content.classList.remove('active'));
+            tabButtons.forEach(button => button.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function setTheme(theme) {
+            document.body.className = theme + '-theme';
+            const lightButton = document.querySelector('.light-theme');
+            const darkButton = document.querySelector('.dark-theme');
+            lightButton.classList.remove('active');
+            darkButton.classList.remove('active');
+            if (theme === 'light') {
+                lightButton.classList.add('active');
+            } else if (theme === 'dark') {
+                darkButton.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

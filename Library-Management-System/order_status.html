@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Order Status - Event Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+            padding-top: 20px;
+        }
+
+        .order-status-header {
+            background-color: #3f51b5;
+            color: white;
+            padding: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 80%;
+            max-width: 960px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .header-buttons button {
+            background: none;
+            border: 1px solid #4caf50; /* Green */
+            color: #4caf50;
+            padding: 10px 15px;
+            margin-left: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .header-buttons button:hover {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .header-buttons button.logout {
+            border-color: #f44336; /* Red */
+            color: #f44336;
+        }
+
+        .header-buttons button.logout:hover {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .order-status-title {
+            background-color: #3f51b5;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            width: 80%;
+            max-width: 960px;
+            text-align: center;
+        }
+
+        .order-status-table {
+            width: 80%;
+            max-width: 960px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .order-status-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .order-status-table th, .order-status-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .order-status-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .order-status-table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <header class="order-status-header">
+        <div class="header-buttons">
+            <button onclick="goToHome()">Home</button>
+        </div>
+        <div class="header-buttons">
+            <button class="logout" onclick="logout()">Log Out</button>
+        </div>
+    </header>
+
+    <div class="order-status-title">User Order Status</div>
+
+    <section class="order-status-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>E-Mail</th>
+                    <th>Address</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="orderStatusTable">
+                <tr>
+                    <td>John Doe</td>
+                    <td>john.doe@example.com</td>
+                    <td>123 Main Street, Anytown</td>
+                    <td>Processing</td>
+                </tr>
+                <tr>
+                    <td>Jane Smith</td>
+                    <td>jane.smith@example.com</td>
+                    <td>456 Oak Avenue, Someville</td>
+                    <td>Shipped</td>
+                </tr>
+                <tr>
+                    <td>Peter Jones</td>
+                    <td>peter.jones@example.com</td>
+                    <td>789 Pine Lane, Othercity</td>
+                    <td>Delivered</td>
+                </tr>
+                </tbody>
+        </table>
+    </section>
+
+    <script>
+        function goToHome() {
+            window.location.href = 'user_portol.html';
+        }
+
+        function logout() {
+            window.location.href = 'index.html';
+        }
+
+        // In a real application, you would fetch the user's order status data
+        // from the server and dynamically populate the table rows.
+        // Here's an example of how you might do this using the Fetch API:
+        //
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     fetch('/api/user/orders') // Replace with your actual API endpoint
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             const tableBody = document.getElementById('orderStatusTable');
+        //             tableBody.innerHTML = ''; // Clear existing rows
+        //             data.forEach(order => {
+        //                 const row = tableBody.insertRow();
+        //                 row.insertCell().textContent = order.name; // Assuming 'name' is in your order data
+        //                 row.insertCell().textContent = order.email; // Assuming 'email' is in your order data
+        //                 row.insertCell().textContent = order.address; // Assuming 'address' is in your order data
+        //                 row.insertCell().textContent = order.status; // Assuming 'status' is in your order data
+        //             });
+        //         })
+        //         .catch(error => {
+        //             console.error('Error fetching order status:', error);
+        //             alert('Failed to load order status.');
+        //         });
+        // });
+    </script>
+</body>
+</html>
